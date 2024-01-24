@@ -21,7 +21,7 @@ if(isset($_POST['envoi'])){
     $insertUsers->execute(array($nom, $prenom, $email, $tel, $password));
 
     $insertUsers->closeCursor();
-    header("location:homeEtudiant.php");
+    header("location:homeUsers.php");
   }
 }
 
