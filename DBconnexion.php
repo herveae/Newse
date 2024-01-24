@@ -3,7 +3,7 @@
 class connect extends PDO{ 
 
     const HOST="localhost";
-    const DB="nowaste";
+    const DB="newse";
     const USER="root";
     const PSW="";
 
