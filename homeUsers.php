@@ -1,32 +1,14 @@
 <?php 
-    if(isset($_POST["envoi"])){
-      if(!empty($_POST["envoi"])){
-          $code="code";
-          if($_POST['name'] == $code){
-            header("Location:publication.php");
-          }else{
-            ?>
-            <script src="">alert("Code incorrect");</script>
-            <?php
-          }
-      }else{
-        echo "Veuillez remplir le champs pour acceder a l'espace de publication";
-      }
+    $code="code";
+    if(isset($_POST["envoi"]) && $_POST["code"] === $code){
+      header("Location:publication.php");
     }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <?php include_once("head.php");?>
 </head>
 <body>
      <?php include_once("navbarUser.php");?>
@@ -75,12 +57,13 @@
                     <input name="code" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Entrez le Code de Publication</label>
                   </div>
+                  <button name="envoi" type="submit" class="btn btn-success w-100">Valider</button>
                 </form>
 
             </div>
             <div class="modal-footer">
             
-            <button name="envoi"  type="submit" class="btn btn-success w-100">Valider</button>
+            
             </div>
         </div>
         </div>

@@ -7,21 +7,21 @@ $count=0;
 
 
 if(isset($_POST['envoi'])){
-    if(!empty($_POST["inputLibelle"]) && !empty($_POST["inputName"]) && !empty($_POST["inputOrigine"]) && !empty($_POST["inputDate"]) && !empty($_POST["inputMessage"]) && !empty($_POST["image"])){
+    if(!empty($_POST["inputLibelle"]) && !empty($_POST["inputName"]) && !empty($_POST["inputOrigine"]) && !empty($_POST["inputDate"]) && !empty($_POST["inputMessage"])){
                 // restriction des champs html pour lutter contre la faille xss
                 $libelle=htmlspecialchars($_POST['inputLibelle']);
                 $name=htmlspecialchars($_POST['inputName']);
                 $origine=htmlspecialchars($_POST['inputOrigine']);
                 $message=htmlspecialchars($_POST['inputMessage']);
                 $date=htmlspecialchars($_POST['inputDate']);
-                $image= file_get_contents($_FILES['image']['tmp_name']);
+                // $image= file_get_contents($_FILES['image']['tmp_name']);
                 
 
       // elaboration de la requete preparee
-      $query="insert into annonces(libelle,nom_annonceur,origine,message,date,images) values (?, ?, ?, ?, ?, ?)";
+      $query="insert into annonces(libelle,nom_annonceur,origine,message,date) values (?, ?, ?, ?, ?)";
       $insertAnnonces=$pdo->prepare($query); //execution de la requete preparer dans la variable de reception
 
-      $insertUsers->execute(array($libelle, $nom, $origine, $message, $date, $image));
+      $insertAnnonces->execute(array($libelle, $name, $origine, $message, $date));
   
     //   $insertImages=$pdo->prepare("insert into images(nom,taille,type,bin)values (?,?,?,?)");
     //   $insertImages->execute(array($_FILES['image']['name'], $_FILES["image"]["size"], $_FILES['image']['type'], file_get_contents($_FILES['image']['tmp_name'])));  
@@ -29,7 +29,7 @@ if(isset($_POST['envoi'])){
       $insertAnnonces->closeCursor();
      
       
-      header("location:annonces.php");
+      header("location: homeUsers.php");
     }
   }
 ?>
@@ -37,55 +37,12 @@ if(isset($_POST['envoi'])){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <?php include_once("head.php");?>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="index.php">Newse</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="#">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="publicationAdmin.php">Faire une annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gestionAnnonces.php" >Gerer Annonces</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gestionUsers.php" >Gestion Utilisateurs</a>
-              </li>
-              
+        <?php include_once("navbarUser.php"); ?>
 
-              
-            <!-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
-          
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion">Deconnexion</a>
-      
-        </div>
-      </nav>
-
-      <main class="" id="main">
+      <main  data-aos="zoom-in-up" class="" id="main">
         <section class="mt-5 container">
         <h1 class="text-center" data-aos="zoom-in-down">Faire une annonce</h1>
 
@@ -112,7 +69,7 @@ if(isset($_POST['envoi'])){
                             <label for="floatingInput">Message</label>
                           </div>
                           <div class="form-floating col-md-5 mb-4">
-                            <input name="image" type="file" class="form-control" id="floatingInput" placeholder="image" required>
+                            <input name="image" type="file" class="form-control" id="floatingInput" placeholder="image" >
                             <label for="floatingInput">Image de l'annonce</label>
                           </div>
                           
@@ -173,8 +130,6 @@ if(isset($_POST['envoi'])){
  -->
 
 
-      
-    <!-- bootstrap js -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include_once("footer.php");?>
 </body>
 </html>

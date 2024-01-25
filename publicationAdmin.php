@@ -37,20 +37,12 @@ if(isset($_POST['envoi'])){
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <?php include_once("head.php");?>
 </head>
 <body>
         <?php include_once("navbarAdmin.php"); ?>
 
-      <main class="" id="main">
+      <main  data-aos="zoom-in-up" class="" id="main">
         <section class="mt-5 container">
         <h1 class="text-center" data-aos="zoom-in-down">Faire une annonce</h1>
 

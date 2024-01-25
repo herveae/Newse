@@ -27,7 +27,7 @@
 
           </div>
          
-          <a class="nav-link" href="#" class="" data-bs-toggle="modal" data-bs-target="#deconnexion" style="color: white;">Deconnexion</a>
+          <a class="nav-link" href="#" class="" data-bs-toggle="modal" data-bs-target="#deconnexion" style="color: white;"><i class="fa-solid fa-right-to-bracket pe-2"></i> Deconnexion</a>
       
         </div>
     </nav>

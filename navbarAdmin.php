@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="index.php">Newse</a>
@@ -30,8 +32,8 @@
               
             </form>
           </div>
-          
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion" style="color: white;">Deconnexion</a>
+
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion" style="color: white;"><i class="fa-solid fa-right-to-bracket pe-2"></i> Deconnexion</a>
 
       
         </div>
