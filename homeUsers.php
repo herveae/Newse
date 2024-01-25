@@ -1,3 +1,20 @@
+<?php 
+    if(isset($_POST["envoi"])){
+      if(!empty($_POST["envoi"])){
+          $code="code";
+          if($_POST['name'] == $code){
+            header("Location:publication.php");
+          }else{
+            ?>
+            <script src="">alert("Code incorrect");</script>
+            <?php
+          }
+      }else{
+        echo "Veuillez remplir le champs pour acceder a l'espace de publication";
+      }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,38 +29,7 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="index.php">Newse</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="#">Informations</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Faire une annonce</a>
-              </li>
-              
-
-              
-            <!-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
-          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion">Deconnexion</a>
-          
-            
-      
-        </div>
-      </nav>
+     <?php include_once("navbarUser.php");?>
 
       <main class="" id="main">
         <section class="hero container">
@@ -84,15 +70,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                <form action="" method="POST" >
+                  <div class="form-floating mb-3">
+                    <input name="code" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Entrez le Code de Publication</label>
-                </div>
+                  </div>
+                </form>
 
             </div>
             <div class="modal-footer">
             
-            <button type="button" class="btn btn-success w-100">Valider</button>
+            <button name="envoi"  type="submit" class="btn btn-success w-100">Valider</button>
             </div>
         </div>
         </div>

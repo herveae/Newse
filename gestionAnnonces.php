@@ -10,61 +10,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
-
-
-    <!-- DataTable CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-  
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <?php include_once("head.php");?>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="index.php">Newse</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="dashboard.php">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" >Gerer</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gestionUsers.php" >Gestion Utilisateurs</a>
-              </li>
-              
+        <?php include_once("navbarAdmin.php"); ?>
 
-              
-            <!-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
-          
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion">Deconnexion</a>
-      
-        </div>
-      </nav>
-
-      <main class="" id="main">
-      <h1 class="text-center mt-5">Annonces</h1>
+      <main data-aos="zoom-in-up" class="" id="main">
+      <h1  class="text-center mt-5">Annonces</h1>
         <section class="mt-5 container">  
         <?php
                 $query="select * from annonces";
@@ -125,7 +77,7 @@
 
     
     <!-- Modal -->
-    <div class="modal fade" id="deconnexion" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div  class="modal fade" id="deconnexion" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -169,39 +121,6 @@
 
 
       
-    <!-- bootstrap js -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- DataTable js -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-    
-
-    <!-- initialisation dataTable -->
-    <script type="text/javascript">
-      $(document).ready( function () {
-      $("#dataTable").dataTable({
-      "oLanguage": {
-     "sLengthMenu": "Afficher MENU Enregistrements",
-     "sSearch": "Rechercher:",
-     "sInfo":"Total de TOTAL enregistrements (_END_ / _TOTAL_)",
-     "oPaginate": {
-     "sNext": "Suivant",
-     "sPrevious":"Précédent"}}})});
-  </script>
-
-<script type="text/javascript">
-      $(document).ready( function () {
-      $("#dataTable2").dataTable({
-      "oLanguage": {
-     "sLengthMenu": "Afficher MENU Enregistrements",
-     "sSearch": "Rechercher:",
-     "sInfo":"Total de TOTAL enregistrements (_END_ / _TOTAL_)",
-     "oPaginate": {
-     "sNext": "Suivant",
-     "sPrevious":"Précédent"}}})});
-  </script>
+    <?php include_once("footer.php");?>
 </body>
 </html>

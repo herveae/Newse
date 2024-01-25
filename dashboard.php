@@ -4,61 +4,16 @@
 
 $pdo = new connect();
 $count=0;
+
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
-
-     <!-- DataTable CSS -->
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <?php include_once("head.php");?>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" href="index.php">Newse</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="#">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="publicationAdmin.php">Faire une annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gestionAnnonces.php" >Gerer Annonces</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="gestionUsers.php" >Gestion Utilisateurs</a>
-              </li>
-              
-
-              
-            <!-- <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
-          
-            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#deconnexion">Deconnexion</a>
-      
-        </div>
-      </nav>
+      <?php include_once("navbarAdmin.php"); ?>
 
       <main class="" id="main">
         <section class="mt-5 container">
@@ -104,7 +59,7 @@ $count=0;
 
     
       <div data-aos="zoom-in-up" class="container">
-          <h1 data-aos="zoom-in-up" class="text-center mt-5 mb-3">Annonces</h1>
+          <h1 data-aos="zoom-in-up" class="text-center mt-5 mb-5">Annonces</h1>
           <?php
               $query="select * from annonces";
               $pdostml=$pdo->prepare($query);
@@ -120,7 +75,7 @@ $count=0;
                       <th>ORIGINE</th>
                       <th>MESSAGE</th>
                       <th>DATE</th>
-                      <th>ACTION</th>
+                      
                   </tr>
               </thead>
               <tbody>
@@ -191,37 +146,6 @@ $count=0;
  -->
 
 
-    <!-- JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- DataTable js -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
-    <!-- initialisation dataTable -->
-    <script type="text/javascript">
-      $(document).ready( function () {
-      $("#dataTable").dataTable({
-      "oLanguage": {
-     "sLengthMenu": "Afficher MENU Enregistrements",
-     "sSearch": "Rechercher:",
-     "sInfo":"Total de TOTAL enregistrements (_END_ / _TOTAL_)",
-     "oPaginate": {
-     "sNext": "Suivant",
-     "sPrevious":"Précédent"}}})});
-  </script>
-
-<script type="text/javascript">
-      $(document).ready( function () {
-      $("#dataTable2").dataTable({
-      "oLanguage": {
-     "sLengthMenu": "Afficher MENU Enregistrements",
-     "sSearch": "Rechercher:",
-     "sInfo":"Total de TOTAL enregistrements (_END_ / _TOTAL_)",
-     "oPaginate": {
-     "sNext": "Suivant",
-     "sPrevious":"Précédent"}}})});
-  </script>
-      
-    <!-- bootstrap js -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <?php include_once("footer.php");?>
 </body>
 </html>
