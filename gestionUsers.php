@@ -2,8 +2,9 @@
 
 <?php 
 
-$pdo = new connect();
-$count=0;
+    $pdo = new connect();
+    $count=0;
+
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +17,15 @@ $count=0;
     <!-- bootstrap files-->
     <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+
+    <!-- DataTable CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  
     <!-- css files -->
     <link rel="stylesheet" href="assets/styles/style.css">
-
-     <!-- DataTable CSS -->
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,10 +40,7 @@ $count=0;
                 <a class="nav-link active" aria-current="page"  href="#">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Annonce</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="publicationAdmin.php">Faire une annonce</a>
+                <a class="nav-link" href="#">Faire une Annonce</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="gestionAnnonces.php" >Gerer Annonces</a>
@@ -61,87 +63,52 @@ $count=0;
       </nav>
 
       <main class="" id="main">
-        <section class="mt-5 container">
-            <div class="row">
-            <div data-aos="zoom-in-down" class="container">
-      
+      <h1 class="text-center mt-5">Utilisateurs</h1>
+        <section class="mt-5 container">  
+        <?php
+                $query="select * from users";
+                $pdostml=$pdo->prepare($query);
+                $pdostml->execute();
+                // var_dump($pdostml->fetchAll(PDO::FETCH_ASSOC));
+            ?>
+            <table data-aos="zoom-in-up" id="dataTable2" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOM</th>
+                        <th>PRENOM</th>
+                        <th>EMAIL</th>
+                        <th>TEL</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($ligne=$pdostml->fetch(PDO::FETCH_ASSOC)):
+                        $count++;    
+                    ?>
+                    <tr>
+                        <td><?php echo $ligne["id_users"];?></td>
+                        <td><?php echo $ligne["nom"];?></td>
+                        <td><?php echo $ligne["prenom"];?></td>
+                        <td><?php echo $ligne["email"];?></td>
+                        <td><?php echo $ligne["tel"];?></td>
+                        <td>
+                            <a id="deleteModal" href="deleteUsers.php?id=<?php echo $ligne["id_users"]?>" class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                </svg>
+                            </a>  
+                        </td>
 
-              <h1  data-aos="zoom-in-up" class="text-center mt-5 mb-3">Utilisateurs</h1>
-              <?php
-                  $query="select * from users";
-                  $pdostml=$pdo->prepare($query);
-                  $pdostml->execute();
-                  // var_dump($pdostml->fetchAll(PDO::FETCH_ASSOC));
-              ?>
-              <table data-aos="zoom-in-up" id="dataTable" class="display">
-                  <thead>
-                      <tr>
-                          <th>ID</th>
-                          <th>NOM</th>
-                          <th>PRENOM</th>
-                          <th>EMAIL</th>
-                          <th>TEL</th>
-                          <th>ACTION</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <?php while($ligne=$pdostml->fetch(PDO::FETCH_ASSOC)):
-                          $count++;    
-                      ?>
-                      <tr>
-                          <td><?php echo $ligne["id_users"];?></td>
-                          <td><?php echo $ligne["nom"];?></td>
-                          <td><?php echo $ligne["prenom"];?></td>
-                          <td><?php echo $ligne["email"];?></td>
-                          <td><?php echo $ligne["tel"];?></td>
-                          <td>
-                      </tr>
-                  <?php endwhile;?>
-              </tbody>
-          </table>
+                    </tr>
+                    
+                    <?php endwhile; ?>
+
+                </tbody>
+            </table>
         </div>
+    </main>
 
-
-    
-      <div data-aos="zoom-in-up" class="container">
-          <h1 data-aos="zoom-in-up" class="text-center mt-5 mb-3">Annonces</h1>
-          <?php
-              $query="select * from annonces";
-              $pdostml=$pdo->prepare($query);
-              $pdostml->execute();
-              // var_dump($pdostml->fetchAll(PDO::FETCH_ASSOC));
-          ?>
-          <table data-aos="zoom-in-up" id="dataTable2" class="display">
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>LIBELLE</th>
-                      <th>NOM DE L'ANNONCEUR</th>
-                      <th>ORIGINE</th>
-                      <th>MESSAGE</th>
-                      <th>DATE</th>
-                      <th>ACTION</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php while($ligne=$pdostml->fetch(PDO::FETCH_ASSOC)):
-                      $count++;    
-                  ?>
-                  <tr>
-                      <td><?php echo $ligne["id_annonces"];?></td>
-                      <td><?php echo $ligne["libelle"];?></td>
-                      <td><?php echo $ligne["nom_annonceur"];?></td>
-                      <td><?php echo $ligne["origine"];?></td>
-                      <td><?php echo $ligne["message"];?></td>
-                      <td><?php echo $ligne["date"];?></td>
-                  </tr>
-                
-                  <?php endwhile;?>
-              </tbody>
-          </table>
-      </div>
-                
-            </div>
         </section>
       </main>
 
@@ -191,11 +158,17 @@ $count=0;
  -->
 
 
+      
+    <!-- bootstrap js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- DataTable js -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    
+
     <!-- initialisation dataTable -->
     <script type="text/javascript">
       $(document).ready( function () {
@@ -220,8 +193,5 @@ $count=0;
      "sNext": "Suivant",
      "sPrevious":"Précédent"}}})});
   </script>
-      
-    <!-- bootstrap js -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

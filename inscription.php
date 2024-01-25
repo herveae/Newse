@@ -53,7 +53,7 @@ if(isset($_POST['envoi'])){
                         <h1 class="h3 mb-3 text-center">Please sign up</h1>
                     
 
-                        <div class="form-floating mb-3">
+                          <div class="form-floating mb-3">
                             <input name="inputName" type="text" class="form-control" id="floatingInput" placeholder="your name" required>
                             <label for="floatingInput">Nom</label>
                           </div>
