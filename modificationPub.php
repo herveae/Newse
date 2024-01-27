@@ -2,36 +2,24 @@
 
 <?php 
 
-$pdo = new connect();
-$count=0;
+        $pdo = new connect();
+        $count=0;
 
 
-if(isset($_POST['envoi'])){
-    if(!empty($_POST["inputLibelle"]) && !empty($_POST["inputName"]) && !empty($_POST["inputOrigine"]) && !empty($_POST["inputDate"]) && !empty($_POST["inputMessage"])){
-                // restriction des champs html pour lutter contre la faille xss
-                $libelle=htmlspecialchars($_POST['inputLibelle']);
-                $name=htmlspecialchars($_POST['inputName']);
-                $origine=htmlspecialchars($_POST['inputOrigine']);
-                $message=htmlspecialchars($_POST['inputMessage']);
-                $date=htmlspecialchars($_POST['inputDate']);
-                // $image= file_get_contents($_FILES['image']['tmp_name']);
-                
-
-      // elaboration de la requete preparee
-      $query="insert into annonces(libelle,nom_annonceur,origine,message,date) values (?, ?, ?, ?, ?)";
-      $insertAnnonces=$pdo->prepare($query); //execution de la requete preparer dans la variable de reception
-
-      $insertAnnonces->execute(array($libelle, $name, $origine, $message, $date));
-  
-    //   $insertImages=$pdo->prepare("insert into images(nom,taille,type,bin)values (?,?,?,?)");
-    //   $insertImages->execute(array($_FILES['image']['name'], $_FILES["image"]["size"], $_FILES['image']['type'], file_get_contents($_FILES['image']['tmp_name'])));  
-  
-      $insertAnnonces->closeCursor();
-     
-      
-      header("location:gestionAnnonces.php");
+    if(!empty($_POST)){
+        $query="update annonces set libelle=:libelle, nom_annonceur=:nom, origine=:origine, date=:date, message=:message where id_annonces=:id";
+        $pdostmt=$pdo->prepare($query);
+        $pdostmt->execute(["libelle"=>$_POST["inputLibelle"],"nom"=>$_POST["inputName"], "origine"=>$_POST["inputOrigine"],"date"=>$_POST["inputDate"],"message"=>$_POST["inputMessage"],"id_annonces"=>$_POST["myid"]]);
+        $pdostmt->closeCursor();
+        header("location:publicationAdmin.php");
     }
-  }
+
+    if(!empty($_GET["id"])) {
+        $query="select * from annonces where id_annonces=:id";
+        $pdostmt=$pdo->prepare($query);
+        $pdostmt->execute(["id"=>$_GET['id']]);
+        while($row=$pdostmt->fetch(PDO::FETCH_ASSOC)):
+        
 ?>
 
 <!DOCTYPE html>
@@ -44,28 +32,29 @@ if(isset($_POST['envoi'])){
 
       <main  data-aos="zoom-in-up" class="" id="main">
         <section class="mt-5 container">
-        <h1 class="text-center" data-aos="zoom-in-down">Faire une annonce</h1>
+        <h1 class="text-center" data-aos="zoom-in-down">Modifier une annonce</h1>
 
             <form  data-aos="zoom-in-down" class="row g-3 mt-5" method="POST" enctype="multipart/form-data">
                         <div class="row">
+                        <input type="hidden" name="myid" value="<?php echo $row["id_annonces"];?>">
                         <div class="form-floating col-md-6 mb-4">
-                            <input name="inputLibelle" type="text" class="form-control" id="floatingInput" placeholder="libelle" required>
+                            <input name="inputLibelle" type="text" class="form-control" id="floatingInput" placeholder="libelle" value="<?php echo $row["libelle"];?>" required>
                             <label for="floatingInput">Libelle</label>
                         </div>
                         <div class="form-floating col-md-6  mb-4">
-                            <input name="inputName" type="text" class="form-control" id="floatingInput" placeholder="your name" required>
+                            <input name="inputName" type="text" class="form-control" id="floatingInput" placeholder="your name" value="<?php echo $row["nom_annonceur"];?>" required>
                             <label for="floatingInput">Nom de l'annonceur</label>
                           </div>
                           <div class="form-floating col-md-6  mb-4">
-                            <input name="inputOrigine" type="text" class="form-control" id="floatingInput" placeholder="origine" required>
+                            <input name="inputOrigine" type="text" class="form-control" id="floatingInput" placeholder="origine" value="<?php echo $row["origine"];?>" required>
                             <label for="floatingInput">Origine de l'annonce</label>
                           </div>
                           <div class="form-floating col-md-6  mb-4">
-                            <input name="inputDate" type="date" class="form-control" id="floatingInput" placeholder="Date" required>
+                            <input name="inputDate" type="date" class="form-control" id="floatingInput" placeholder="Date" value="<?php echo $row["date"];?>" required>
                             <label for="floatingInput">Date</label>
                           </div>
                           <div class="form-floating mb-4">
-                            <textarea name="inputMessage" class="form-control" name="" id="floatingInput" placeholder="message" cols="30" rows="10" required></textarea>
+                            <textarea name="inputMessage" class="form-control" name="" id="floatingInput" placeholder="message" cols="30" rows="10" value="<?php echo $row["message"];?>" required></textarea>
                             <label for="floatingInput">Message</label>
                           </div>
                           <div class="form-floating col-md-5 mb-4">
@@ -77,13 +66,17 @@ if(isset($_POST['envoi'])){
             
                     <div class="row ">
                         <div class="col-lg-12 text-center mt-4">
-                            <button name="envoi" type="submit" class="btn btn-dark w-50">Publier</button>
+                            <button name="envoi" type="submit" class="btn btn-primary w-50">Publier</button>
                         </div>
                     </div>
             </form>
         </section>
       </main>
-
+      <?php
+  endWhile;
+  $pdostmt->closeCursor();
+  }
+  ?>
 
     
     <!-- Modal -->

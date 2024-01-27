@@ -77,7 +77,7 @@ if(isset($_POST['envoi'])){
             
                     <div class="row ">
                         <div class="col-lg-12 text-center mt-4">
-                            <button name="envoi" type="submit" class="btn btn-primary w-50">Publier</button>
+                            <button name="envoi" type="submit" class="btn btn-dark w-50">Publier</button>
                         </div>
                     </div>
             </form>

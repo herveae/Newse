@@ -21,7 +21,7 @@ $count=0;
             <div data-aos="zoom-in-down" class="container">
       
 
-              <h1  data-aos="zoom-in-up" class="text-center mt-5 mb-3">Utilisateurs</h1>
+              <h1  data-aos="zoom-in-up" class="text-center mt-5 mb-3">Liste des Utilisateurs</h1>
               <?php
                   $query="select * from users";
                   $pdostml=$pdo->prepare($query);
@@ -36,7 +36,6 @@ $count=0;
                           <th>PRENOM</th>
                           <th>EMAIL</th>
                           <th>TEL</th>
-                          <th>ACTION</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -49,7 +48,7 @@ $count=0;
                           <td><?php echo $ligne["prenom"];?></td>
                           <td><?php echo $ligne["email"];?></td>
                           <td><?php echo $ligne["tel"];?></td>
-                          <td>
+                          
                       </tr>
                   <?php endwhile;?>
               </tbody>
@@ -59,14 +58,14 @@ $count=0;
 
     
       <div data-aos="zoom-in-up" class="container">
-          <h1 data-aos="zoom-in-up" class="text-center mt-5 mb-5">Annonces</h1>
+          <h1 data-aos="zoom-in-up" class="text-center mt-5 mb-5">Liste des Annonces</h1>
           <?php
               $query="select * from annonces";
               $pdostml=$pdo->prepare($query);
               $pdostml->execute();
               // var_dump($pdostml->fetchAll(PDO::FETCH_ASSOC));
           ?>
-          <table data-aos="zoom-in-up" id="dataTable2" class="display">
+          <table  id="dataTable2" class="display">
               <thead>
                   <tr>
                       <th>ID</th>
