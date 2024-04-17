@@ -1,5 +1,5 @@
 <?php include_once("DBconnexion.php"); ?>
-
+<?php $annonces=true;?>
 <?php 
 
 $pdo = new connect();
@@ -32,11 +32,11 @@ $count=0;
                         $count++; 
                     ?>
             <div class="row">
-                <div class="col-lg-10 mx-auto mb-5">
+                <div class="col-lg-10 mx-auto mb-5 border-bottom py-4">
                 
-                    <h3 class="">Libelle: <?php echo $ligne["libelle"];?></b></h3>
+                    <h3 class="mb-2">Libelle: <?php echo $ligne["libelle"];?></b></h3>
                     <h4>Origine: <?php echo $ligne["origine"];?></h4>
-                    <p class="mb-2">MESSAGE: <b><?php echo $ligne["message"];?></b></p>
+                    <p class="mb-2">Message: <?php echo $ligne["message"];?></p>
                     <h6 class="text-body-secondary">Par: <?php echo $ligne["nom_annonceur"];?></h6>
                     <i class="mb-5">le <?php echo $ligne["date"];?></i>            
                 </div>
@@ -93,6 +93,8 @@ $count=0;
  -->
 
 
+    <?php include_once("preloader.php");?>
+    
     <?php include_once("footer.php");?>
 </body>
 </html>

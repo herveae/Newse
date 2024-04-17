@@ -1,5 +1,5 @@
 <?php include_once("DBconnexion.php"); ?>
-
+<?php $dashboard=true;?>
 <?php 
 
 $pdo = new connect();
@@ -144,6 +144,7 @@ $count=0;
     </div>
  -->
 
+    <?php include_once("preloader.php");?>
 
     <?php include_once("footer.php");?>
 </body>

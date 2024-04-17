@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="#">Newse</a>
+          <a class="navbar-brand" href="#">Newse <span style="font-family: system-ui;font-size: 14px;">for admins</span> </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                <a class="nav-link <?php echo !empty($home)?"active":"" ?>" aria-current="page" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Aide</a>
+                <a class="nav-link <?php echo !empty($aide)?"active":"" ?>" href="aide.php">Aide</a>
               </li>
               
             <!-- <form class="d-flex">

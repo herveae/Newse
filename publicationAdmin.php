@@ -1,5 +1,5 @@
 <?php include_once("DBconnexion.php"); ?>
-
+<?php $publication=true;?>
 <?php 
 
 $pdo = new connect();
@@ -77,7 +77,7 @@ if(isset($_POST['envoi'])){
             
                     <div class="row ">
                         <div class="col-lg-12 text-center mt-4">
-                            <button name="envoi" type="submit" class="btn btn-dark w-50">Publier</button>
+                            <button name="envoi" type="submit" class="btn btn-primary w-50">Publier</button>
                         </div>
                     </div>
             </form>
@@ -130,6 +130,8 @@ if(isset($_POST['envoi'])){
  -->
 
 
+ <?php include_once("preloader.php");?>
+    
     <?php include_once("footer.php");?>
 </body>
 </html>

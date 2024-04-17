@@ -1,27 +1,27 @@
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="index.php">Newse</a>
+          <a class="navbar-brand" href="#">Newse <span style="font-family: system-ui;font-size: 14px;">for admins</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  href="dashboard.php">Dashboard</a>
+                <a class="nav-link <?php echo !empty($dashboard)?"active":"" ?>" aria-current="page"  href="dashboard.php">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="annoncesAdmin.php">Annonces</a>
+                <a class="nav-link <?php echo !empty($annonces)?"active":"" ?>" href="annoncesAdmin.php">Annonces</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="publicationAdmin.php">Faire une annonce</a>
+                <a class="nav-link <?php echo !empty($publication)?"active":"" ?>"  href="publicationAdmin.php">Faire une annonce</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="gestionAnnonces.php" >Gerer Annonces</a>
+                <a class="nav-link <?php echo !empty($gestionAnnonces)?"active":"" ?>" href="gestionAnnonces.php" >Gerer Annonces</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="gestionUsers.php" >Gestion Utilisateurs</a>
+                <a class="nav-link <?php echo !empty($gestionUsers)?"active":"" ?>" href="gestionUsers.php" >Gestion Utilisateurs</a>
               </li>
               
 

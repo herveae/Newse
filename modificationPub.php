@@ -9,9 +9,9 @@
     if(!empty($_POST)){
         $query="update annonces set libelle=:libelle, nom_annonceur=:nom, origine=:origine, date=:date, message=:message where id_annonces=:id";
         $pdostmt=$pdo->prepare($query);
-        $pdostmt->execute(["libelle"=>$_POST["inputLibelle"],"nom"=>$_POST["inputName"], "origine"=>$_POST["inputOrigine"],"date"=>$_POST["inputDate"],"message"=>$_POST["inputMessage"],"id_annonces"=>$_POST["myid"]]);
+        $pdostmt->execute(["libelle"=>$_POST["inputLibelle"],"nom"=>$_POST["inputName"], "origine"=>$_POST["inputOrigine"],"date"=>$_POST["inputDate"],"message"=>$_POST["inputMessage"],"id"=>$_POST["myid"]]);
         $pdostmt->closeCursor();
-        header("location:publicationAdmin.php");
+        header("location:gestionAnnonces.php");
     }
 
     if(!empty($_GET["id"])) {

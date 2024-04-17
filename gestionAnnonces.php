@@ -1,5 +1,5 @@
 <?php include_once("DBconnexion.php"); ?>
-
+<?php $gestionAnnonces=true;?>
 <?php 
 
     $pdo = new connect();
@@ -120,7 +120,8 @@
  -->
 
 
-      
+    <?php include_once("preloader.php");?>
+    
     <?php include_once("footer.php");?>
 </body>
 </html>

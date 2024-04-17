@@ -34,25 +34,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newse</title>
-
-    <!-- bootstrap files-->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-
-    <!-- css files -->
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <?php include_once("head.php"); ?>
 </head>
 <body>
-    <?php include_once("navbarHome.php");?>
+   
 
       <main class="" id="main">
         <div class="container connexion">
             <div class="row">
                 <div class="col-lg-5 mx-auto">
                     <form method="POST">
-                        <h1 class="h3 mb-3 text-center">Heureux de vous revoir</h1>
+                        <h2 class=" mb-3 text-center">Heureux de vous revoir</h2>
                     
                         <div class="form-floating mb-3">
                           <input name="login" type="text" class="form-control" id="floatingInput" placeholder="Login" required>
@@ -63,7 +55,7 @@
                           <label for="floatingPassword">Password</label>
                         </div>
 
-                        <button name="envoi" class="w-100 btn btn-lg btn-dark mt-3" type="submit">Sign in</button>
+                        <button name="envoi" class="w-100 btn btn-lg btn-primary text-light mt-3" type="submit">Sign in</button>
                       </form>
                 </div>
             </div>
@@ -72,8 +64,8 @@
 
 
 
-      
-    <!-- bootstrap js -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <?php include_once("preloader.php");?>
+    
+      <?php include_once("footer.php");?>
 </body>
 </html>
